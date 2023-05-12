@@ -6,6 +6,7 @@ body{
    font-family: "Lato";
 
    background-image: url('/resources/jon-parry-C8eSYwQkwHw-unsplash.jpg');
+   box-shadow: inset 0 0 0 2000px rgba(174, 214, 220, 0.7);
    width: 100%;
    height:100%;
    background-size:cover;
@@ -25,22 +26,13 @@ body{
    background-color: #FF9A8D;
 }
 
-.bg-color-2-op{
-   background-color: #FF9A8D;
-}
-
-.bg-color-2-op::before{
-   background-color: #FF9A8D;
-   opacity: 0.5;
-}
-
 .bg-color-3{
    background-color: #4A536B;
 }
 
 /* LOGO SPECS */
-.img-head{
-   width: 100px;
+.img-body{
+   width: 300px;
    background-size:cover;
    background-position: center center;
    background-repeat: no-repeat;
