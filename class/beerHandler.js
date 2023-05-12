@@ -1,8 +1,7 @@
 import { urlBeers } from "../libs/const.js"
-
-
 class Beers {
-
+    //Création d'une fonction asynchrone qui va donner une
+    // prommesse de contenu ou erreur de la part de l'api stocker dans l'url urlBeers
     async callBeers() {
         try {
             const response = await axios.get(urlBeers);
@@ -11,6 +10,14 @@ class Beers {
           console.error(error);
         }
     }
+
+
+
+
+
+
+
+
 
     rowEl;
 

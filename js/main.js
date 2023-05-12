@@ -1,5 +1,7 @@
 import Beers from "../class/beerHandler.js"
-const beer = new Beers;
+
+const beer = new Beers();
+//initialize constante that await for response to promise to obtain from DB
 let res = await beer.callBeers();
 console.log(res);
  //link to html with id
