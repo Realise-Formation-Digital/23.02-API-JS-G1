@@ -8,6 +8,17 @@ class Beers {
         this.rowEl = document.getElementById("rowList");
     }
 
+    async getBeers(){
+        try{
+            let res = await axios.get(urlBeers);
+            this.htmlConstruct(res.data);
+        }
+        catch(e){
+            console.error(e);
+        }
+    }
+
+
     async getBeersByName($value){
         try{
             let res = await axios.get(urlBeers + '?name=' + $value);
