@@ -6,6 +6,7 @@ class Beers {
 
     constructor() {
         this.rowEl = document.getElementById("rowList");
+        console.log(this.rowEl);
     }
 
     async getBeersByName($value){
