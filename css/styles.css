@@ -59,3 +59,10 @@ body{
    padding:0;
 }
 
+.card {
+    width: 18rem;
+}
+
+.card-img-top{
+    height: 40rem;
+}
