@@ -8,14 +8,37 @@ class Beers {
         this.rowEl = document.getElementById("rowList");
     }
 
-    async getBeersByName($value){
+    async getBeersByName(value){
         try{
-            let res = await axios.get(urlBeers + '?name=' + $value);
+            let res = await axios.get(urlBeers + '?name=' + value);
             this.htmlConstruct(res.data);
         }
         catch(e){
             console.error(e);
         }
+    }
+
+    createBeers(name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
+        axios.post(urlBeers, {
+            "name": name,
+            "tagline": tagline,
+            "first_brewed": first_brewed,
+            "image_url": image_url,
+            "contributed_by": contributed_by,
+            "brewers_tips":brewers_tips,
+            "description":description,
+            "food_pairing":[
+                food_pairing,
+                food_pairingDeux,
+                food_pairingTrois
+            ]
+      })
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
 
     htmlConstruct(value){
