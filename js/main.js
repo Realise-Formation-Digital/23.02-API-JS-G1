@@ -1,2 +1,3 @@
-import Beer from "./beerHandler.js"
-import Ingredients from "./ingredientsHandler.js"
+import Beers from "/class/beerHandler.js"
+import Ingredients from "/class/ingredientsHandler.js"
+
