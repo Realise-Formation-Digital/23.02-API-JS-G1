@@ -14,8 +14,8 @@ class Beers {
       //waiting state response from axios
       const response = await axios.get(urlBeers + '?per_page=' + limitByPage + '&page=' + value);
       //return response = complete list data "données"
-      console.log(response.data);
       this.htmlConstruct(response.data);
+      return response.data;
     } catch (error) {
       console.error(error);
     }
@@ -90,11 +90,6 @@ class Beers {
             const link = document.createElement('a');
             link.classList.add('btn');
             link.classList.add('btn-info');
-            const divModal = document.createElement('div');
-            divModal.classList.add('modal-v');
-            divModal.id = i.id;
-            divModal.innerText= "Hello World!";
-            console.log(divModal);
             img.src = i.image_url;
             heading.innerText = i.tagline;
             link.innerText = i.name;
@@ -105,7 +100,6 @@ class Beers {
             card.appendChild(body);
             body.appendChild(heading);
             body.appendChild(link);
-            body.appendChild(divModal);
         }
     }
 

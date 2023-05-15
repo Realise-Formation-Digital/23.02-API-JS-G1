@@ -67,8 +67,19 @@ body{
 
 .modal-v{
    display: none;
+   position: absolute;
+   left: 10%;
+   height: 50vh;
+   z-index: 99;
+   box-shadow: #4A536B 5px 5px 20px;
+   background-color: #aed6dc;
+   width: 90%;
 }
 
 .modal-v:target{
    display:block;
+}
+
+#modalParent{
+   position: relative;
 }
