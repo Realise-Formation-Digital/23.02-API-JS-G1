@@ -1,23 +1,10 @@
 import Beers from "../class/beerHandler.js";
-import Ingredients from "../class/ingredientsHandler.js";
 const beers = new Beers();
-const ingredients = new Ingredients();
 
-const btnCreate = document.getElementById("createBtn");
-const selectIng = document.getElementById("idIng");
-const btnAddIng = document.getElementById("addIng");
-
-let ingredientList = await ingredients.getIngredients();
-
-for (let ingredient of ingredientList) {
-    const opt = document.createElement("option");
-    opt.value = ingredient.id;
-    opt.text = ingredient.name_ing;
-    selectIng.appendChild(opt);
-}
+const updateBut = document.getElementById("updateBtn");
 
 
-
+let id = document.getElementById('id')
 let name = document.getElementById('name');
 let tagline = document.getElementById('tagline');
 let firstBrewed = document.getElementById('firstBrewed');
@@ -29,7 +16,7 @@ let contributedBy = document.getElementById('contributedBy');
 let description = document.getElementById('description');
 let brewersTips = document.getElementById('brewers');
 
-async function createBeer(){
+async function updateBeers(){
     let nom = name.value;
     let tag = tagline.value;
     let date = firstBrewed.value;
@@ -40,17 +27,9 @@ async function createBeer(){
     let contribute = contributedBy.value;
     let decrit = description.value;
     let brewers = brewersTips.value;
-    await beers.createBeers(nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
-}
-
-let idBeer = document.getElementById('idBeer');
-
-function addIngBeer() {
-    let beer = idBeer.value;
-    let ing = selectIng.options[selectIng.selectedIndex].value;
-    beers.addIngToBeer(beer, ing);
+    await beers.updateBeers(id, nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
 }
 
 
-btnCreate.addEventListener("click",createBeer);
-btnAddIng.addEventListener("click", addIngBeer);
+
+updateBut.addEventListener("click",()=> updateBeers());
