@@ -52,7 +52,9 @@ body{
 }
 
 .card {
-    width: 18rem;
+   width: 18rem;
+   background-color: #4A536B;
+   margin: 1em;
 }
 
 .card-img-top{
