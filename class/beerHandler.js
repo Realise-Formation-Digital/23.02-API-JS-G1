@@ -1,5 +1,5 @@
 
-import { urlBeers } from "../libs/const.js";
+import { urlBeers,limitByPage } from "../libs/const.js";
 
 
 class Beers {
@@ -9,11 +9,12 @@ class Beers {
   }
   //asynchrone function with promise
   //calls beers from DB (urlBeers)
-  async callBeers() {
+  async callBeers(value) {
     try {
       //waiting state response from axios
-      const response = await axios.get(urlBeers);
+      const response = await axios.get(urlBeers + '?per_page=' + limitByPage + '&page=' + value);
       //return response = complete list data "données"
+      console.log(response.data);
       this.htmlConstruct(response.data);
     } catch (error) {
       console.error(error);
@@ -89,10 +90,11 @@ class Beers {
             const link = document.createElement('a');
             link.classList.add('btn');
             link.classList.add('btn-info')
+            link.dataset('modal');
             img.src = i.image_url;
             heading.innerText = i.tagline;
             link.innerText = i.name;
-            link.href = i.id;
+            link.href = '#'+i.id;
             rowEl.appendChild(colEl);
             colEl.appendChild(card);
             card.appendChild(img);
