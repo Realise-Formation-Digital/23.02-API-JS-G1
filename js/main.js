@@ -1,7 +1,6 @@
 import Beers from "../class/beerHandler.js";
-import Ingredients from "../class/ingredientsHandler.js"
+
 const beers = new Beers();
-const ingredients = new Ingredients();
 
 
 let inputValue = document.getElementById("searchInput");

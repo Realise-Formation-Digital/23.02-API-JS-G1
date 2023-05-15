@@ -1,4 +1,4 @@
-import { urlBeers, urlIngredients } from "../libs/const.js"
+import { urlBeers } from "../libs/const.js"
 
 class Beers {
 
