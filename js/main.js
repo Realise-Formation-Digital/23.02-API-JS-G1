@@ -8,16 +8,16 @@ let inputValue = document.getElementById("searchInput");
 let nameButton = document.getElementById("nameBtn");
 let typeButton = document.getElementById("typeBtn");
 
-nameButton.addEventListener("click", clickBeer);
-typeButton.addEventListener("click", clickIng);
+nameButton.addEventListener("click", clickName);
+typeButton.addEventListener("click", clickType);
 
 
-async function clickBeer(){
+async function clickName(){
     let nameSearch = inputValue.value;
     await beers.getBeersByName(nameSearch);
 }
 
-async function clickIng(){
+async function clickType(){
     let typeSearch = inputValue.value;
     await beers.getBeersByType(typeSearch);
 }
