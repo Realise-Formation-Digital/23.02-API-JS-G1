@@ -1,22 +1,33 @@
-import { urlBeers } from "../libs/const.js"
+
+import { urlBeers } from "../libs/const.js";
+
 
 class Beers {
-
-    rowEl;
-
-    constructor() {
-        this.rowEl = document.getElementById("rowList");
+  rowEl;
+  constructor() {
+    this.rowEl = document.getElementById("rowList");
+  }
+  //asynchrone function with promise
+  //calls beers from DB (urlBeers)
+  async callBeers() {
+    try {
+      //waiting state response from axios
+      const response = await axios.get(urlBeers);
+      //return response = complete list data "données"
+      this.htmlConstruct(response.data);
+    } catch (error) {
+      console.error(error);
     }
+  }
 
-    async getBeersByName(value){
-        try{
-            let res = await axios.get(urlBeers + '?name=' + value);
-            this.htmlConstruct(res.data);
-        }
-        catch(e){
-            console.error(e);
-        }
+  async getBeersByName(value) {
+    try {
+      let res = await axios.get(urlBeers + "?name=" + value);
+      this.htmlConstruct(res.data);
+    } catch (e) {
+      console.error(e);
     }
+  }
 
     async getBeersByType(value){
         try{
@@ -110,5 +121,4 @@ class Beers {
     }
 }
 
-
-export default Beers
+export default Beers;
