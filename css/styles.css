@@ -1,0 +1,60 @@
+/* BASIC BODY DESIGN */
+body{
+   min-height: 100vh;
+   width: 100%;
+   color: white;
+   font-family: "Lato";
+
+   background-image: url('/resources/jon-parry-C8eSYwQkwHw-unsplash.jpg');
+   box-shadow: inset 0 0 0 2000px rgba(174, 214, 220, 0.7);
+   width: 100%;
+   height:100%;
+   background-size:cover;
+   background-position: center center;
+   background-repeat: no-repeat;
+   text-align:center;
+   margin:auto;
+   padding:0;
+}
+
+/* THEME COLORS */
+.bg-color-1{
+   background-color: #aed6dc;
+}
+
+.bg-color-2{
+   background-color: #FF9A8D;
+}
+
+.bg-color-3{
+   background-color: #4A536B;
+}
+
+/* LOGO SPECS */
+.img-body{
+   width: 300px;
+   background-size:cover;
+   background-position: center center;
+   background-repeat: no-repeat;
+   text-align:center;
+   margin:0;
+   padding:0;
+}
+
+.img-logo{
+   width: 50px;
+   background-size:cover;
+   background-position: center center;
+   background-repeat: no-repeat;
+   text-align:center;
+   margin:0;
+   padding:0;
+}
+
+.card {
+    width: 18rem;
+}
+
+.card-img-top{
+    height: 40rem;
+}
