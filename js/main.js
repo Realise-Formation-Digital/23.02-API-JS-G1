@@ -1,8 +1,6 @@
 import Beers from "../class/beerHandler.js";
-import Ingredients from "../class/ingredientsHandler.js"
-//instance of object Beers
+
 const beers = new Beers();
-const ingredients = new Ingredients();
 
 //await state - response to obtain JSON beer from DB
 await beers.callBeers();
@@ -21,5 +19,5 @@ async function clickName(){
 
 async function clickType(){
     let typeSearch = inputValue.value;
-    await ingredients.getBeersBytype(typeSearch);
+    await beers.getBeersByType(typeSearch);
 }
