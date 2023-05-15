@@ -1,4 +1,4 @@
-import { urlBeers } from "../libs/const.js"
+import { urlBeers, urlIngredients } from "../libs/const.js"
 
 class Beers {
 
@@ -11,6 +11,16 @@ class Beers {
     async getBeersByName(value){
         try{
             let res = await axios.get(urlBeers + '?name=' + value);
+            this.htmlConstruct(res.data);
+        }
+        catch(e){
+            console.error(e);
+        }
+    }
+
+    async getBeersByType(value){
+        try{
+            let res = await axios.get(urlBeers + '?type=' + value);
             this.htmlConstruct(res.data);
         }
         catch(e){
@@ -34,7 +44,6 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
-            console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
             this.htmlId(result);
         } catch (error) {
@@ -56,7 +65,8 @@ class Beers {
         this.removeChild(rowEl);
         for(let i of value){
             const colEl = document.createElement('div');
-            colEl.classList.add('col');
+            colEl.classList.add('col-sm-12');
+            colEl.classList.add('col-lg-4');
             const card = document.createElement('div');
             card.classList.add('card');
             const img = document.createElement('img');
