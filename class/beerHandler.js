@@ -89,8 +89,12 @@ class Beers {
             heading.classList.add('card-title');
             const link = document.createElement('a');
             link.classList.add('btn');
-            link.classList.add('btn-info')
-            link.dataset('modal');
+            link.classList.add('btn-info');
+            const divModal = document.createElement('div');
+            divModal.classList.add('modal');
+            divModal.id = i.id;
+            divModal.innerText= "Hello World!";
+            console.log(divModal);
             img.src = i.image_url;
             heading.innerText = i.tagline;
             link.innerText = i.name;
@@ -101,6 +105,7 @@ class Beers {
             card.appendChild(body);
             body.appendChild(heading);
             body.appendChild(link);
+            body.appendChild(divModal);
         }
     }
 

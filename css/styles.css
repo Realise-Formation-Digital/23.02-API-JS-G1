@@ -64,3 +64,11 @@ body{
     margin-top: 1rem;
     height: 35rem;
 }
+
+.modal{
+   display: none;
+}
+
+.modal:target{
+   display:block;
+}
