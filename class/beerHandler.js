@@ -22,7 +22,6 @@ class Beers {
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
         for(let i of value){
-            console.log(i);
             const colEl = document.createElement('div');
             colEl.classList.add('col');
             const card = document.createElement('div');
