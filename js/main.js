@@ -19,5 +19,5 @@ async function clickBeer(){
 
 async function clickIng(){
     let typeSearch = inputValue.value;
-    await beers.getBeersBytype(typeSearch);
+    await beers.getBeersByType(typeSearch);
 }

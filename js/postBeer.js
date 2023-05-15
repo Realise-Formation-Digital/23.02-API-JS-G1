@@ -48,7 +48,6 @@ let idBeer = document.getElementById('idBeer');
 function addIngBeer() {
     let beer = idBeer.value;
     let ing = selectIng.options[selectIng.selectedIndex].value;
-    console.log(beer, ing);
     beers.addIngToBeer(beer, ing);
 }
 

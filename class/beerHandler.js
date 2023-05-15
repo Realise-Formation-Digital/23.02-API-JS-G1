@@ -18,6 +18,16 @@ class Beers {
         }
     }
 
+    async getBeersByType(value){
+        try{
+            let res = await axios.get(urlBeers + '?type=' + value);
+            this.htmlConstruct(res.data);
+        }
+        catch(e){
+            console.error(e);
+        }
+    }
+
     async createBeers(name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
         try {
             const response = await axios.post(urlBeers, {
@@ -34,7 +44,6 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
-            console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
             this.htmlId(result);
         } catch (error) {
@@ -52,7 +61,6 @@ class Beers {
     }
 
     htmlConstruct(value){
-        console.log(value)
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
         for(let i of value){
