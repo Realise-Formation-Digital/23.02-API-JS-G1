@@ -8,13 +8,46 @@ class Beers {
         this.rowEl = document.getElementById("rowList");
     }
 
-    async getBeersByName($value){
+    async getBeersByName(value){
         try{
-            let res = await axios.get(urlBeers + '?name=' + $value);
+            let res = await axios.get(urlBeers + '?name=' + value);
             this.htmlConstruct(res.data);
         }
         catch(e){
             console.error(e);
+        }
+    }
+
+    async createBeers(name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
+        try {
+            const response = await axios.post(urlBeers, {
+                "name": name,
+                "tagline": tagline,
+                "first_brewed": first_brewed,
+                "image_url": image_url,
+                "contributed_by": contributed_by,
+                "food_pairing": [
+                    food_pairing,
+                    food_pairingDeux,
+                    food_pairingTrois
+                ],
+                "brewers_tips": brewers_tips,
+                "description": description
+            });
+            console.log(response.data);
+            let result = response.data.substr(response.data.length - 4, 4);
+            this.htmlId(result);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async addIngToBeer(idBeer, idIng) {
+        try {
+            const response = await axios.post(urlBeers + '/' + idBeer + '/ingredients/' + idIng);
+            this.htmlConstruct(response.data);
+        } catch (error) {
+            console.error(error);
         }
     }
 
@@ -46,6 +79,18 @@ class Beers {
             body.appendChild(heading);
             body.appendChild(link);
         }
+    }
+
+    htmlId(value) {
+        const rowEl = document.getElementById("rowList");
+        this.removeChild(rowEl);
+        const colEl = document.createElement('div');
+        colEl.classList.add('alert');
+        colEl.classList.add('alert-info');
+        colEl.classList.add('text-center');
+        colEl.role = "alert";
+        colEl.innerHTML = value;
+        rowEl.appendChild(colEl);
     }
 
     removeChild(parent){
