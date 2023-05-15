@@ -65,10 +65,10 @@ body{
     height: 35rem;
 }
 
-.modal{
+.modal-v{
    display: none;
 }
 
-.modal:target{
+.modal-v:target{
    display:block;
 }

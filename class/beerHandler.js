@@ -91,7 +91,7 @@ class Beers {
             link.classList.add('btn');
             link.classList.add('btn-info');
             const divModal = document.createElement('div');
-            divModal.classList.add('modal');
+            divModal.classList.add('modal-v');
             divModal.id = i.id;
             divModal.innerText= "Hello World!";
             console.log(divModal);
