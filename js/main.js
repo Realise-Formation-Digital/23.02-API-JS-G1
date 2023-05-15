@@ -23,5 +23,3 @@ async function clickIng(){
     let typeSearch = inputValue.value;
     await ingredients.getBeersBytype(typeSearch);
 }
-
-

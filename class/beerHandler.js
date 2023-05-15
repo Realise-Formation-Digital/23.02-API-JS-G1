@@ -1,4 +1,7 @@
+
 import { urlBeers } from "../libs/const.js";
+
+
 class Beers {
   rowEl;
   constructor() {
@@ -26,6 +29,16 @@ class Beers {
     }
   }
 
+    async getBeersByType(value){
+        try{
+            let res = await axios.get(urlBeers + '?type=' + value);
+            this.htmlConstruct(res.data);
+        }
+        catch(e){
+            console.error(e);
+        }
+    }
+
     async createBeers(name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
         try {
             const response = await axios.post(urlBeers, {
@@ -42,7 +55,6 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
-            console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
             this.htmlId(result);
         } catch (error) {
@@ -64,7 +76,8 @@ class Beers {
         this.removeChild(rowEl);
         for(let i of value){
             const colEl = document.createElement('div');
-            colEl.classList.add('col');
+            colEl.classList.add('col-sm-12');
+            colEl.classList.add('col-lg-4');
             const card = document.createElement('div');
             card.classList.add('card');
             const img = document.createElement('img');
