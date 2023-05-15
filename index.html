@@ -12,9 +12,14 @@
    <!--Install loadash-->
    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-   <link rel="stylesheet" href="style.css">
-   <script src="main.js" type="module"></script>
-   <title>Beer API</title>
+   <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+   <script src="./js/main.js" type="module"></script>
+   <!-- <script src="lodash.js"></script> -->
+   <title>Home</title>
 </head>
 
 <body>
@@ -66,11 +71,52 @@
          </div>
       </div>
    </header>
-   <main>
-      // MAIN HTML BODY
+
+   <main class="min-vh-100">
+      <div class="row py-5 m-0">
+         <div class="col-sm-12 col-lg-2">
+            <!-- SPACER -->
+         </div>
+         <div class="col-sm-12 col-lg-8 px-5 py-3 text-center">
+            <h1 class="px-2 py-3 display-4 text-dark fw-bold">
+               Welcome to our Beer API Webpage
+            </h1>
+         </div>
+         <div class="col-sm-12 col-lg-2">
+            <!-- SPACER -->
+         </div>
+      </div>
+      <div class="row m-0 px-5">
+         <div class="col-sm-12 col-lg-2">
+            <!-- SPACER -->
+         </div>
+         <div class="col-sm-12 col-lg-8 text-dark text-center h4 py-2">
+            <p class="mx-5 my-3">
+               We worked very hard to create an API where all beer lovers and brewers can find their beloved drinks.
+            </p>
+            <p class="mx-5 my-3">
+               Our goal is having one place where we can find and also add beers from all around the world.
+               We hope you enjoy the experience.
+            </p>
+            <p class="mx-5 my-3">
+               . . .
+            </p>
+            <p class="mx-5 my-3">
+               Cheers!!!
+            </p>
+         </div>
+         <div class="col-sm-12 col-lg-2">
+            <!-- SPACER -->
+         </div>
+      </div>
+      <div class="row m-0 px-5">
+         <div class="col-12">
+            <img src="/resources/logo-no-background.png" alt="logo" class="img-body" />
+         </div>
+      </div>
    </main>
    <footer>
-      <div class="row m-0 bg-color-2 border border-1 border-dark text-dark">
+      <div class="row m-0 fixed-bottom bg-color-2 border border-1 border-dark text-dark">
          <div class="col-sm-12 col-lg-4 px-5 py-3">
             <p>
                DreamTeam Devs
@@ -88,10 +134,7 @@
    </footer>
 
 
-
-   // ------ LODASH CDN ----------
-   <script src="lodash.js"></script>
-   // ------ BOOTSTRAP CDN ----------
+   <!-- // ------ BOOTSTRAP CDN ---------- -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"></script>
