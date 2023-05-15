@@ -56,6 +56,7 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
+            console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
             this.htmlId(result);
         } catch (error) {
