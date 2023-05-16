@@ -64,8 +64,14 @@ async function createBeer(){
  */
 function addIngBeer() {
     let beer = idBeer.value;
-    let ing = selectIng.options[selectIng.selectedIndex].value;
-    beers.addIngToBeer(beer, ing);
+    // VERIFIE SI UNE BIERE A ETE CREE AVANT D'INSERER L'INGREDIENT SUR LA BIERE
+    if(beer !== ""){
+        console.log("hello")
+        let ing = selectIng.options[selectIng.selectedIndex].value;
+        beers.addIngToBeer(beer, ing);
+    }else {
+        beers.htmlAlert("Please create a beer before trying to add any ingredient")
+    }
 }
 
 //appel sur un click des bouton des fonctions
