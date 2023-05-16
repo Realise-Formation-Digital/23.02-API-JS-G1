@@ -55,16 +55,16 @@ function slctBeer(){
     // UPDATE THE PLACEHOLDERS WITH THE PREVIOUS INFO OF THE SELECTED BEER
     if(selectBeer.value !== "Select beer to edit"){
         const beer = beerList.find(element => element.id === parseInt(selectBeer.value))
-        name.placeholder = beer.name;
-        tagline.placeholder = beer.tagline;
-        firstBrewed.placeholder = beer.first_brewed;
-        urlImage.placeholder = beer.image_url;
-        foodPairing.placeholder = beer.food_pairing;
-        foodPairingDeux.placeholder = beer.food_pairing2;
-        foodPairingTrois.placeholder = beer.food_pairing3;
-        contributedBy.placeholder = beer.contributed_by;
-        description.placeholder = beer.description;
-        brewersTips.placeholder = beer.brewers_tips;
+        name.value = beer.name;
+        tagline.value = beer.tagline;
+        firstBrewed.value = beer.first_brewed;
+        urlImage.value = beer.image_url;
+        foodPairing.value = beer.food_pairing;
+        foodPairingDeux.value = beer.food_pairing2;
+        foodPairingTrois.value = beer.food_pairing3;
+        contributedBy.value = beer.contributed_by;
+        description.value = beer.description;
+        brewersTips.value = beer.brewers_tips;
 
         //OUTPUTS THE ID OF OUR SELECTED BEER
         selectedBeer = beer.id
