@@ -52,9 +52,9 @@ async function createBeer(){
     if(!!nom && !!tag && !!date && !!url && !!food && !!foodDeux && !!foodTrois && !!contribute && !!brewers && !!decrit ){
         let id = await beers.createBeers(nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
         idBeer.value = id;
-        beers.htmlId(id);
+        beers.htmlAlert(id);
     }else {
-        beers.htmlId("Please, fill all the information entries");
+        beers.htmlAlert("Please, fill all the information entries");
     }
 }
 
@@ -64,8 +64,14 @@ async function createBeer(){
  */
 function addIngBeer() {
     let beer = idBeer.value;
-    let ing = selectIng.options[selectIng.selectedIndex].value;
-    beers.addIngToBeer(beer, ing);
+    // VERIFIE SI UNE BIERE A ETE CREE AVANT D'INSERER L'INGREDIENT SUR LA BIERE
+    if(beer !== ""){
+        console.log("hello")
+        let ing = selectIng.options[selectIng.selectedIndex].value;
+        beers.addIngToBeer(beer, ing);
+    }else {
+        beers.htmlAlert("Please create a beer before trying to add any ingredient")
+    }
 }
 
 //appel sur un click des bouton des fonctions

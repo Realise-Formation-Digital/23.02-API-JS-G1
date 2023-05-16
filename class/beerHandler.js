@@ -32,7 +32,7 @@ class Beers {
       let res = await axios.get(urlBeers + "?name=" + value);
       this.htmlConstruct(res.data);
     } catch (e) {
-      throw new ERROR;
+      throw new Error;
     }
   }
 
@@ -77,9 +77,10 @@ class Beers {
             });
             console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
+            this.htmlAlert("Beer successfully created")
             return result;
         } catch (error) {
-            throw new ERROR;
+            throw new Error;
         }
     }
 
@@ -121,9 +122,9 @@ class Beers {
                 "description": description
             });
             console.log(response.data);
-            this.htmlId("Beer succesfully updated");
+            this.htmlAlert("Beer succesfully updated");
         } catch (error) {
-            this.htmlId("This id does not exist in our database, please create the item first");
+            this.htmlAlert("This id does not exist in our database, please create the item first");
             console.error(error);
         }
     }
@@ -169,7 +170,7 @@ class Beers {
      * fonction construisant un html sur une string ou objet
      * @param {objet unique ou string} value 
      */
-    htmlId(value) {
+    htmlAlert(value) {
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
         const colEl = document.createElement('div');
