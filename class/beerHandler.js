@@ -77,7 +77,7 @@ class Beers {
             });
             console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
-            this.htmlId(result);
+            return result;
         } catch (error) {
             throw new ERROR;
         }
@@ -103,6 +103,9 @@ class Beers {
         try {
             // METTRE A JOUR LES DONNÉES
             console.log(id)
+            console.log('i',image_url);
+            console.log('D', description);
+            console.log('C',contributed_by);
             const response = await axios.put(urlBeers + '/' + id, {
                 "name": name,
                 "tagline": tagline,
@@ -117,6 +120,7 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
+            console.log(response.data);
             this.htmlId("Beer succesfully updated");
         } catch (error) {
             this.htmlId("This id does not exist in our database, please create the item first");
