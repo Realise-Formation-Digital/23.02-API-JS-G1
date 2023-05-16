@@ -40,7 +40,12 @@ async function createBeer(){
     let contribute = contributedBy.value;
     let decrit = description.value;
     let brewers = brewersTips.value;
-    await beers.createBeers(nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
+
+    if(!!nom && !!tag && !!date && !!url && !!food && !!foodDeux && !!foodTrois && !!contribute && !!brewers && !!decrit ){
+        await beers.createBeers(nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
+    }else {
+        beers.htmlId("Please, fill all the information entries");
+    }
 }
 
 let idBeer = document.getElementById('idBeer');
