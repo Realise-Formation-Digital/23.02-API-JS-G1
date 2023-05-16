@@ -45,11 +45,11 @@ for (let i = 0; i < page; i++) {
 // recupérer ées elements html de la navbar pour la recherche
 let inputValue = document.getElementById("searchInput");
 let nameButton = document.getElementById("nameBtn");
-let typeButton = document.getElementById("typeBtn");
+let typeSelect = document.getElementById("type-select");
 
 //ajouter les ecouterurs sur les différents boutons
 nameButton.addEventListener("click", clickName);
-typeButton.addEventListener("click", clickType);
+typeSelect.addEventListener("change", changeType);
 
 /**
  * fonction appele au clic du bouton
@@ -65,10 +65,16 @@ async function clickName(){
     }
 }
 
-async function clickType(){
+/**
+ * fonction appele au select
+ * Récupère la valeur du select et appel une méthode de la classe
+ */
+async function changeType(){
     try{
-        let typeSearch = inputValue.value;
-        await beers.getBeersByType(typeSearch);
+        if(typeSelect.value !== "ing"){
+            let typeSearch = typeSelect.value;
+            await beers.getBeersByType(typeSearch);
+        }
     }
     catch(e){
         console.error(e);
