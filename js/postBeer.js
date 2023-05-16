@@ -59,13 +59,15 @@ async function createBeer(){
 }
 
 
-
+/**
+ * ajout de l'ingredient à la bière
+ */
 function addIngBeer() {
     let beer = idBeer.value;
     let ing = selectIng.options[selectIng.selectedIndex].value;
     beers.addIngToBeer(beer, ing);
 }
 
-
+//appel sur un click des bouton des fonctions
 btnCreate.addEventListener("click",createBeer);
 btnAddIng.addEventListener("click", addIngBeer);
