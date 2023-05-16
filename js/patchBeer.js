@@ -44,10 +44,10 @@ async function updateBeers(id){
         if(!!id && !!nom && !!tag && !!date && !!url && !!food && !!foodDeux && !!foodTrois && !!contribute && !!brewers && !!decrit ){
             await beers.updateBeers(id, nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
         }else {
-            beers.htmlId("Please, fill all the information entries");
+            beers.htmlAlert("Please, fill all the information entries");
         }
     }else {
-        beers.htmlId("Please, select a beer first");
+        beers.htmlAlert("Please, select a beer first");
     }
 }
 
