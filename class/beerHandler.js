@@ -3,6 +3,8 @@ import { urlBeers } from "../libs/const.js";
 
 
 class Beers {
+
+    //elément html pour construire
   rowEl;
   constructor() {
     this.rowEl = document.getElementById("rowList");
@@ -14,18 +16,22 @@ class Beers {
       //waiting state response from axios
       const response = await axios.get(urlBeers);
       //return response = complete list data "données"
-      this.htmlConstruct(response.data);
+      return response.data;
     } catch (error) {
       console.error(error);
     }
   }
 
+  /**
+   * methode qui fait une requete à la db
+   * @param {input de la navbar} value 
+   */
   async getBeersByName(value) {
     try {
       let res = await axios.get(urlBeers + "?name=" + value);
       this.htmlConstruct(res.data);
     } catch (e) {
-      console.error(e);
+      throw new ERROR;
     }
   }
 
@@ -39,6 +45,19 @@ class Beers {
         }
     }
 
+    /**
+     * Méthode permettant de récupérer les données pour créer une bière
+     * @param {string} name 
+     * @param {string} tagline 
+     * @param {string} first_brewed 
+     * @param {string} image_url 
+     * @param {string} food_pairing 
+     * @param {string} food_pairingDeux 
+     * @param {string} food_pairingTrois 
+     * @param {string} contributed_by 
+     * @param {string} brewers_tips 
+     * @param {string} description 
+     */
     async createBeers(name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
         try {
             const response = await axios.post(urlBeers, {
@@ -55,13 +74,21 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
+            console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
             this.htmlId(result);
         } catch (error) {
-            console.error(error);
+            throw new ERROR;
         }
     }
 
+
+    /**
+     * fonction récupérant les id de bière et ingrédient
+     * pour finaliser la bière
+     * @param {int} idBeer 
+     * @param {int} idIng 
+     */
     async addIngToBeer(idBeer, idIng) {
         try {
             const response = await axios.post(urlBeers + '/' + idBeer + '/ingredients/' + idIng);
@@ -93,6 +120,10 @@ class Beers {
         }
     }
 
+    /**
+     * permettant de contruire le html sur une liste d'objet
+     * @param {liste d'objet} value 
+     */
     htmlConstruct(value){
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
@@ -110,11 +141,11 @@ class Beers {
             heading.classList.add('card-title');
             const link = document.createElement('a');
             link.classList.add('btn');
-            link.classList.add('btn-info')
+            link.classList.add('btn-info');
             img.src = i.image_url;
             heading.innerText = i.tagline;
             link.innerText = i.name;
-            link.href = i.id;
+            link.href = '#'+i.id;
             rowEl.appendChild(colEl);
             colEl.appendChild(card);
             card.appendChild(img);
@@ -124,6 +155,11 @@ class Beers {
         }
     }
 
+
+    /**
+     * fonction construisant un html sur une string ou objet
+     * @param {objet unique ou string} value 
+     */
     htmlId(value) {
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
@@ -136,6 +172,11 @@ class Beers {
         rowEl.appendChild(colEl);
     }
 
+
+    /**
+     * fonction permettant d'enlever les elt html en lui donnant l'elt parent
+     * @param {element html} parent 
+     */
     removeChild(parent){
         while (parent.firstChild) {
             parent.removeChild(parent.firstChild);
