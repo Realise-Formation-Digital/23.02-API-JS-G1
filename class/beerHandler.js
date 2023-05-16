@@ -141,6 +141,7 @@ class Beers {
             colEl.classList.add('col-lg-4');
             const card = document.createElement('div');
             card.classList.add('card');
+            card.classList.add('shadow-lg');
             const img = document.createElement('img');
             img.classList.add('card-img-top');
             const body = document.createElement('div');
