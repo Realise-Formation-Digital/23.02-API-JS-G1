@@ -101,10 +101,40 @@
 
 
 
-   <!-- // ------ BOOTSTRAP CDN ---------- -->
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"></script>
+
+   <div class="modal fade" id="Modal" tabindex="-1">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header" id="nameBeer">
+               <h1 class="modal-title fs-5" id="beerTitle"></h1>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col">
+                        <div class="row">
+                           <div class="col-4 row align-items-start text-center">
+                              <img src="" id="img_modal" alt="">
+                           </div>
+                           <div class="col-4 row align-items-center text-center" id="beerDesc"></div>
+                              <div class="col-4 row align-items-end text-center" id="listIngredient"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
+      <!-- // ------ BOOTSTRAP CDN ---------- -->
+
 </body>
 
 </html>

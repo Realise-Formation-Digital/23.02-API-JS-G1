@@ -16,6 +16,7 @@ class Beers {
     try {
       //waiting state response from axios
       const response = await axios.get(urlBeers);
+      const modalElements = response.data;
       //return response = complete list data "données"
       return response.data;
     } catch (error) {
@@ -188,5 +189,4 @@ class Beers {
         }
     }
 }
-
 export default Beers;
