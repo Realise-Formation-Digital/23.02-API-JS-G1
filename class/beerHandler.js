@@ -16,7 +16,6 @@ class Beers {
       //waiting state response from axios
       const response = await axios.get(urlBeers);
       //return response = complete list data "données"
-      this.htmlConstruct(response.data);
       return response.data;
     } catch (error) {
       console.error(error);
