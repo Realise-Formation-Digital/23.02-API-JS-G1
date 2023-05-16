@@ -73,6 +73,28 @@ class Beers {
         }
     }
 
+    async updateBeers(id, name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
+        try {
+            const response = await axios.put(urlBeers + '/' + id.value, {
+                "name": name,
+                "tagline": tagline,
+                "first_brewed": first_brewed,
+                "image_url": image_url,
+                "contributed_by": contributed_by,
+                "food_pairing": [
+                    food_pairing,
+                    food_pairingDeux,
+                    food_pairingTrois
+                ],
+                "brewers_tips": brewers_tips,
+                "description": description
+            });
+            this.htmlId("Beer succesfully updated");
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     htmlConstruct(value){
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
