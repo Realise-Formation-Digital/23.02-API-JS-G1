@@ -2,6 +2,7 @@ import Beers from "../class/beerHandler.js";
 
 const beers = new Beers();
 
+
 //await state - response to obtain JSON beer from DB
 // await beers.callBeers();
 //stock résultat dans res

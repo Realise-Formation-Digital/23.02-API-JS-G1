@@ -5,22 +5,24 @@ import { urlBeers } from "../libs/const.js";
 class Beers {
 
     //elément html pour construire
-  rowEl;
-  constructor() {
-    this.rowEl = document.getElementById("rowList");
-  }
-
-  //asynchrone function with promise
-  //calls beers from DB (urlBeers)
-  async callBeers() {
-    try {
-      //waiting state response from axios
-      const response = await axios.get(urlBeers);
-      //return response = complete list data "données"
-      return response.data;
-    } catch (error) {
-      console.error(error);
+    rowEl;
+    modal;
+    constructor() {
+        this.rowEl = document.getElementById("rowList");
+        this.modal = document.getElementById('modalParent');
     }
+
+    //asynchrone function with promise
+    //calls beers from DB (urlBeers)
+    async callBeers() {
+        try {
+            //waiting state response from axios
+            const response = await axios.get(urlBeers);
+            //return response = complete list data "données"
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
   }
 
   /**
@@ -34,14 +36,42 @@ class Beers {
     } catch (e) {
       throw new Error;
     }
-  }
 
-    async getBeersByType(value){
-        try{
+    /**
+     * 
+     * @returns une bière
+     */
+
+    async callOneBeer(id) {
+        try {
+            //waiting state response from axios
+            const response = await axios.get(urlBeers + '/' + id);
+            //return response = complete list data "données"
+            return response.data[0];
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    /**
+     * methode qui fait une requete à la db
+     * @param {input de la navbar} value 
+     */
+    async getBeersByName(value) {
+        try {
+            let res = await axios.get(urlBeers + "?name=" + value);
+            this.htmlConstruct(res.data);
+        } catch (e) {
+            throw new ERROR;
+        }
+    }
+
+    async getBeersByType(value) {
+        try {
             let res = await axios.get(urlBeers + '?type=' + value);
             this.htmlConstruct(res.data);
         }
-        catch(e){
+        catch (e) {
             console.error(e);
         }
     }
@@ -59,7 +89,7 @@ class Beers {
      * @param {string} brewers_tips 
      * @param {string} description 
      */
-    async createBeers(name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
+    async createBeers(name, tagline, first_brewed, image_url, food_pairing, food_pairingDeux, food_pairingTrois, contributed_by, brewers_tips, description) {
         try {
             const response = await axios.post(urlBeers, {
                 "name": name,
@@ -100,13 +130,13 @@ class Beers {
         }
     }
 
-    async updateBeers(id, name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
+    async updateBeers(id, name, tagline, first_brewed, image_url, food_pairing, food_pairingDeux, food_pairingTrois, contributed_by, brewers_tips, description) {
         try {
             // METTRE A JOUR LES DONNÉES
             console.log(id)
-            console.log('i',image_url);
+            console.log('i', image_url);
             console.log('D', description);
-            console.log('C',contributed_by);
+            console.log('C', contributed_by);
             const response = await axios.put(urlBeers + '/' + id, {
                 "name": name,
                 "tagline": tagline,
@@ -133,10 +163,10 @@ class Beers {
      * permettant de contruire le html sur une liste d'objet
      * @param {liste d'objet} value 
      */
-    htmlConstruct(value){
+    htmlConstruct(value) {
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
-        for(let i of value){
+        for (let i of value) {
             const colEl = document.createElement('div');
             colEl.classList.add('col-sm-12');
             colEl.classList.add('col-lg-4');
@@ -149,13 +179,15 @@ class Beers {
             body.classList.add("card-body");
             const heading = document.createElement('h5');
             heading.classList.add('card-title');
-            const link = document.createElement('a');
+            const link = document.createElement('button');
             link.classList.add('btn');
             link.classList.add('btn-info');
+            link.addEventListener("click", (evt) => {
+                this.htmlModal(i.id);
+            })
             img.src = i.image_url;
             heading.innerText = i.tagline;
             link.innerText = i.name;
-            link.href = '#'+i.id;
             rowEl.appendChild(colEl);
             colEl.appendChild(card);
             card.appendChild(img);
@@ -163,6 +195,54 @@ class Beers {
             body.appendChild(heading);
             body.appendChild(link);
         }
+    }
+
+   async htmlModal(id) {
+        console.log(id);
+        let beer = await this.callOneBeer(id);
+        console.log(beer);
+        this.modal.style.display = "grid";
+        this.removeChild(this.modal);
+        const closeBtn = document.createElement('button');
+        closeBtn.classList.add('btn');
+        closeBtn.classList.add('btnClose');
+        closeBtn.innerText = 'X';
+        this.modal.innerHTML = 
+        `<div class="image">
+            <img src="${beer.image_url}" alt="">
+        </div>
+        <div class="infoBeer">
+            <h2>${beer.name}</h2>
+            <p class="tag">${beer.tagline}</p>
+            <p class="description">${beer.description}</p>
+            <p class="date">${beer.first_brewed}</p>
+            <p class="contributed">${beer.contributed_by}</p>
+        </div>
+        <div class="ing">
+            <ul>
+            ${beer.ingredients
+                .map(
+                  (ingredient) =>
+                  `<li>type: ${ingredient.type}</li>
+                  <li>name: ${ingredient.name}</li>`
+                  )
+                  .join("")}
+            </ul>
+        </div>
+        <div class="food">
+            <ul>
+            <li>${beer.food_pairing}</li>
+            <li>${beer.food_pairing2}</li>
+            <li>${beer.food_pairingTrois}</li>
+            </ul>
+        </div>
+        <div class="tips">
+            <p>${beer.brewers_tips}</p>
+        </div>`;
+        this.modal.appendChild(closeBtn);
+        closeBtn.addEventListener("click", (evt) => {
+            this.modal.style.display = "none";
+        })
     }
 
 
@@ -187,7 +267,7 @@ class Beers {
      * fonction permettant d'enlever les elt html en lui donnant l'elt parent
      * @param {element html} parent 
      */
-    removeChild(parent){
+    removeChild(parent) {
         while (parent.firstChild) {
             parent.removeChild(parent.firstChild);
         }

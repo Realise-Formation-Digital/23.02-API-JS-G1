@@ -52,7 +52,7 @@ async function createBeer(){
     if(!!nom && !!tag && !!date && !!url && !!food && !!foodDeux && !!foodTrois && !!contribute && !!brewers && !!decrit ){
         let id = await beers.createBeers(nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
         idBeer.value = id;
-        beers.htmlAlert(id);
+        beers.htmlAlert(`Bière ${id} a bien été créé.`);
     }else {
         beers.htmlAlert("Please, fill all the information entries");
     }
