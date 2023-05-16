@@ -7,6 +7,7 @@ class Beers {
   constructor() {
     this.rowEl = document.getElementById("rowList");
   }
+
   //asynchrone function with promise
   //calls beers from DB (urlBeers)
   async callBeers() {
@@ -15,6 +16,7 @@ class Beers {
       const response = await axios.get(urlBeers);
       //return response = complete list data "données"
       this.htmlConstruct(response.data);
+      return response.data
     } catch (error) {
       console.error(error);
     }
@@ -73,7 +75,9 @@ class Beers {
 
     async updateBeers(id, name,tagline,first_brewed,image_url,food_pairing,food_pairingDeux,food_pairingTrois,contributed_by,brewers_tips,description){
         try {
-            const response = await axios.put(urlBeers + '/' + id.value, {
+            // METTRE A JOUR LES DONNÉES
+            console.log(id)
+            const response = await axios.put(urlBeers + '/' + id, {
                 "name": name,
                 "tagline": tagline,
                 "first_brewed": first_brewed,
@@ -89,6 +93,7 @@ class Beers {
             });
             this.htmlId("Beer succesfully updated");
         } catch (error) {
+            this.htmlId("This id does not exist in our database, please create the item first");
             console.error(error);
         }
     }

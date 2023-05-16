@@ -2,8 +2,6 @@ import Beers from "../class/beerHandler.js";
 
 const beers = new Beers();
 
-//await state - response to obtain JSON beer from DB
-await beers.callBeers();
 let inputValue = document.getElementById("searchInput");
 let nameButton = document.getElementById("nameBtn");
 let typeButton = document.getElementById("typeBtn");
