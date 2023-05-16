@@ -3,22 +3,23 @@ import Beers from "../class/beerHandler.js";
 const beers = new Beers();
 
 //await state - response to obtain JSON beer from DB
-await beers.callBeers(1);
+await beers.callBeers();
+let res = await beers.callBeers();
 
+
+// recupérer ées elements html de la navbar pour la recherche
 let inputValue = document.getElementById("searchInput");
 let nameButton = document.getElementById("nameBtn");
 let typeButton = document.getElementById("typeBtn");
-let pageBtn = document.querySelectorAll(".btnPage");
 
+//ajouter les ecouterurs sur les différents boutons
 nameButton.addEventListener("click", clickName);
 typeButton.addEventListener("click", clickType);
 
-for (let i = 0; i < pageBtn.length; i++) {
-    let element = pageBtn[i];
-    element.addEventListener("click",()=>choosePage(element.value));
-    }
-
-
+/**
+ * fonction appele au clic du bouton
+ * Récupère la valeur de l'input et appel une méthode de la classe
+ */
 async function clickName(){
     try{
         let nameSearch = inputValue.value;
@@ -39,13 +40,4 @@ async function clickType(){
     }
 }
 
-async function choosePage(value){
-    try{
-        let res = await beers.callBeers(value);
-        return res;
-    }
-    catch(e){
-        console.error(e);
-    }
-}
 
