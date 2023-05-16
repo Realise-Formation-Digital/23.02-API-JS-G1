@@ -93,7 +93,8 @@ body{
 }
 
 .image img{
-   width: max-content;
+   width: 45%;
+   object-fit: contain;
 }
 
 .tag{
