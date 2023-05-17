@@ -90,6 +90,8 @@ body{
 
 .image{
    grid-row:span 2;
+   height: max-content;
+   width: max-content;
 }
 
 .image img{

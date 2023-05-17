@@ -36,6 +36,7 @@ class Beers {
     } catch (e) {
       throw new Error;
     }
+}
 
     /**
      * 
