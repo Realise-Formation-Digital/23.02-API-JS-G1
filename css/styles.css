@@ -90,13 +90,13 @@ body{
 
 .image{
    grid-row:span 2;
-   height: max-content;
-   width: max-content;
+   height: fit-content;
+   width: fit-content;
+   object-fit: contain;
 }
 
 .image img{
-   width: 45%;
-   object-fit: contain;
+   width: 90%;
 }
 
 .tag{
