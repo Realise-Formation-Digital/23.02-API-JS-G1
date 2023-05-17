@@ -45,12 +45,11 @@ for (let i = 0; i < page; i++) {
 
 // recupérer ées elements html de la navbar pour la recherche
 let inputValue = document.getElementById("searchInput");
-let nameButton = document.getElementById("nameBtn");
 let typeSelect = document.getElementById("type-select");
 
-//ajouter les ecouterurs sur les différents boutons
-nameButton.addEventListener("click", clickName);
+//ajouter les ecouterurs sur les différents éléments
 typeSelect.addEventListener("change", changeType);
+inputValue.addEventListener("input",clickName);
 
 /**
  * fonction appele au clic du bouton
