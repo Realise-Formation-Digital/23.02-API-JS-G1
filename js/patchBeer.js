@@ -52,6 +52,10 @@ async function updateBeers(id){
     }
 }
 
+/**
+ * fonction appeler dans le bouton
+ * @param {int} id 
+ */
 async function delBeer(id){
     await beers.deleteBeer(id);
 }
