@@ -165,7 +165,9 @@ class Beers {
 
     async deleteBeer(idBeer){
         try{
+            //wait for api, format : urlBeers, idBeer
             let res = await axios.delete(urlBeers + '/' + idBeer);
+            //message de l'api (PHP), bière a bien été supprimée. 
             this.htmlAlert(res.data['message']);
         }
         catch(e){
@@ -182,7 +184,7 @@ class Beers {
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
         for (let i of value) {
-            //create div with : 2 columns
+            //create div with : columns
             const colEl = document.createElement('div');
             colEl.classList.add('col-sm-12');
             colEl.classList.add('col-lg-4');
