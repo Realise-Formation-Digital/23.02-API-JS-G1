@@ -1,5 +1,5 @@
 import Beers from "../class/beerHandler.js";
-
+//initialisation
 const beers = new Beers();
 
 
@@ -41,7 +41,25 @@ for (let i = 0; i < page; i++) {
     document.getElementById("btnContainer").appendChild(btnPage);
   }
 
+/**
+ * fonction appele au clic du bouton
+ * Récupère la valeur de l'input et appel une méthode de la classe
+ */
+async function clickName(evt){
+    try{
+        evt.stopPropagation()
 
+        if(!evt.target.value || evt.target.value === '') return
+        console.log(evt.target.value)
+        let nameSearch = evt.target.value;
+        console.log('ciao',nameSearch, beers);
+        await beers.getBeersByName(evt.target.value);
+        console.log('reciao', nameSearch, await beers.getBeersByName(nameSearch))
+    }
+    catch(e){
+        console.error('remiao', e);
+    }
+}
 
 // recupérer ées elements html de la navbar pour la recherche
 let inputValue = document.getElementById("searchInput");
@@ -49,21 +67,9 @@ let typeSelect = document.getElementById("type-select");
 
 //ajouter les ecouterurs sur les différents éléments
 typeSelect.addEventListener("change", changeType);
-inputValue.addEventListener("input",clickName);
+inputValue.addEventListener("input",async (evt) => await clickName(evt));
 
-/**
- * fonction appele au clic du bouton
- * Récupère la valeur de l'input et appel une méthode de la classe
- */
-async function clickName(){
-    try{
-        let nameSearch = inputValue.value;
-        await beers.getBeersByName(nameSearch);
-    }
-    catch(e){
-        console.error(e);
-    }
-}
+
 
 /**
  * fonction appele au select

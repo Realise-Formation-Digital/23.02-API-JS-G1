@@ -16,6 +16,7 @@ class Beers {
     //calls beers from DB (urlBeers)
     async callBeers() {
         try {
+            console.log('callbeers')
             //waiting state response from axios
             const response = await axios.get(urlBeers);
             //return response = complete list data "données"
@@ -23,20 +24,24 @@ class Beers {
         } catch (error) {
             console.error(error);
         }
-  }
-
-  /**
-   * methode qui fait une requete à la db
-   * @param {input de la navbar} value 
-   */
-  async getBeersByName(value) {
-    try {
-      let res = await axios.get(urlBeers + "?name=" + value);
-      this.htmlConstruct(res.data);
-    } catch (e) {
-      throw new Error;
     }
-}
+
+    /**
+     * methode qui fait une requete à la db
+     * @param {input de la navbar} value 
+     */
+    async getBeersByName(value) {
+        try {
+            console.log('miao', value, urlBeers + "?name=" + value);
+            let res = await axios.get(urlBeers + "?name=" + value);
+            console.log(res);
+            //this.htmlConstruct(res.data);
+            return "syélvain"
+        } catch (e) {
+            console.log('ciao', e);
+            throw new Error("ciao");
+        }
+    }
 
     /**
      * 
@@ -68,6 +73,7 @@ class Beers {
     }
 
     async getBeersByType(value) {
+        console.log(value, urlBeers + '?type=' + value)
         try {
             let res = await axios.get(urlBeers + '?type=' + value);
             this.htmlConstruct(res.data);
@@ -186,7 +192,7 @@ class Beers {
             link.addEventListener("click", (evt) => {
                 this.htmlModal(i.id);
             })
-            img.src = i.image_url;
+            img.src = i.image_url || "";
             heading.innerText = i.tagline;
             link.innerText = i.name;
             rowEl.appendChild(colEl);
@@ -198,7 +204,7 @@ class Beers {
         }
     }
 
-   async htmlModal(id) {
+    async htmlModal(id) {
         console.log(id);
         let beer = await this.callOneBeer(id);
         console.log(beer);
@@ -208,8 +214,8 @@ class Beers {
         closeBtn.classList.add('btn');
         closeBtn.classList.add('btnClose');
         closeBtn.innerText = 'X';
-        this.modal.innerHTML = 
-        `<div class="image">
+        this.modal.innerHTML =
+            `<div class="image">
             <img src="${beer.image_url}" alt="">
         </div>
         <div class="infoBeer">
@@ -223,11 +229,11 @@ class Beers {
             <ul>
             ${beer.ingredients
                 .map(
-                  (ingredient) =>
-                  `<li>type: ${ingredient.type}</li>
+                    (ingredient) =>
+                        `<li>type: ${ingredient.type}</li>
                   <li>name: ${ingredient.name}</li>`
-                  )
-                  .join("")}
+                )
+                .join("")}
             </ul>
         </div>
         <div class="food">
