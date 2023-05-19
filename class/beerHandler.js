@@ -166,7 +166,6 @@ class Beers {
     async deleteBeer(idBeer){
         try{
             let res = await axios.delete(urlBeers + '/' + idBeer);
-            console.log(res.data);
             this.htmlAlert(res.data['message']);
         }
         catch(e){

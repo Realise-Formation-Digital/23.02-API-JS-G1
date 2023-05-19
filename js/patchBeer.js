@@ -57,7 +57,12 @@ async function updateBeers(id){
  * @param {int} id 
  */
 async function delBeer(id){
-    await beers.deleteBeer(id);
+    try{
+        await beers.deleteBeer(id);
+    }
+    catch(e){
+        console.error(e);
+    }
 }
 
 function slctBeer(){
