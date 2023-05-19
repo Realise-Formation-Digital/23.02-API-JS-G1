@@ -25,18 +25,18 @@ class Beers {
         }
     }
 
-    /**
-     * methode qui fait une requete à la db
-     * @param {input de la navbar} value 
-     */
-    async getBeersByName(value) {
-        try {
-            let res = await axios.get(urlBeers + "?name=" + value);
-            this.htmlConstruct(res.data);
-        } catch (e) {
-            throw new Error("ciao");
-        }
+  /**
+   * methode qui fait une requete à la db
+   * @param {input de la navbar} value 
+   */
+  async getBeersByName(value) {
+    try {
+      let res = await axios.get(urlBeers + "?name=" + value);
+      this.htmlConstruct(res.data);
+    } catch (e) {
+      throw new Error;
     }
+}
 
     /**
      * 
@@ -167,27 +167,35 @@ class Beers {
         const rowEl = document.getElementById("rowList");
         this.removeChild(rowEl);
         for (let i of value) {
+            //create div with : 2 columns
             const colEl = document.createElement('div');
             colEl.classList.add('col-sm-12');
             colEl.classList.add('col-lg-4');
+            //create div with : card 
             const card = document.createElement('div');
             card.classList.add('card');
             card.classList.add('shadow-lg');
+            //create img in card
             const img = document.createElement('img');
             img.classList.add('card-img-top');
+            //create div with : card body
             const body = document.createElement('div');
             body.classList.add("card-body");
             const heading = document.createElement('h5');
             heading.classList.add('card-title');
+            //create Button on card
             const link = document.createElement('button');
             link.classList.add('btn');
             link.classList.add('btn-info');
+            //on click : link to htmlModal
             link.addEventListener("click", (evt) => {
                 this.htmlModal(i.id);
             })
+            // loops through data 
             img.src = i.image_url;
             heading.innerText = i.tagline;
             link.innerText = i.name;
+            //append elements to row and columns 
             rowEl.appendChild(colEl);
             colEl.appendChild(card);
             card.appendChild(img);
@@ -197,16 +205,21 @@ class Beers {
         }
     }
 
-    async htmlModal(id) {
+    //async function for Modal (by id)
+   async htmlModal(id) {
         console.log(id);
+        //async - call beer by id
         let beer = await this.callOneBeer(id);
         console.log(beer);
+        //display grid of modal
         this.modal.style.display = "grid";
         this.removeChild(this.modal);
+        //create button close
         const closeBtn = document.createElement('button');
         closeBtn.classList.add('btn');
         closeBtn.classList.add('btnClose');
         closeBtn.innerText = 'X';
+        //inject js in html 
         this.modal.innerHTML =
             `<div class="image">
             <img src="${beer.image_url}" alt="">
