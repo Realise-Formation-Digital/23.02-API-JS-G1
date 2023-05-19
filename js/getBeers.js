@@ -33,7 +33,7 @@ for (let i = 0; i < page; i++) {
     btnPage.classList.add('mx-3');
     btnPage.classList.add('p-3');
     btnPage.id = i;
-    btnPage.innerText = i
+    btnPage.innerText = i + 1
     btnPage.value = i;
     btnPage.addEventListener('click', (evt) => {
         choosPage(parseInt(evt.target.value))
@@ -50,11 +50,8 @@ async function clickName(evt){
         evt.stopPropagation()
 
         if(!evt.target.value || evt.target.value === '') return
-        console.log(evt.target.value)
         let nameSearch = evt.target.value;
-        console.log('ciao',nameSearch, beers);
         await beers.getBeersByName(evt.target.value);
-        console.log('reciao', nameSearch, await beers.getBeersByName(nameSearch))
     }
     catch(e){
         console.error('remiao', e);

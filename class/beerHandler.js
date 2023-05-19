@@ -16,7 +16,6 @@ class Beers {
     //calls beers from DB (urlBeers)
     async callBeers() {
         try {
-            console.log('callbeers')
             //waiting state response from axios
             const response = await axios.get(urlBeers);
             //return response = complete list data "données"
@@ -32,13 +31,9 @@ class Beers {
      */
     async getBeersByName(value) {
         try {
-            console.log('miao', value, urlBeers + "?name=" + value);
             let res = await axios.get(urlBeers + "?name=" + value);
-            console.log(res);
-            //this.htmlConstruct(res.data);
-            return "syélvain"
+            this.htmlConstruct(res.data);
         } catch (e) {
-            console.log('ciao', e);
             throw new Error("ciao");
         }
     }
@@ -73,7 +68,6 @@ class Beers {
     }
 
     async getBeersByType(value) {
-        console.log(value, urlBeers + '?type=' + value)
         try {
             let res = await axios.get(urlBeers + '?type=' + value);
             this.htmlConstruct(res.data);
@@ -112,7 +106,6 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
-            console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
             this.htmlAlert("Beer successfully created")
             return result;
@@ -192,7 +185,7 @@ class Beers {
             link.addEventListener("click", (evt) => {
                 this.htmlModal(i.id);
             })
-            img.src = i.image_url || "";
+            img.src = i.image_url;
             heading.innerText = i.tagline;
             link.innerText = i.name;
             rowEl.appendChild(colEl);
