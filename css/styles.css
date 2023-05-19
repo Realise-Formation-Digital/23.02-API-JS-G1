@@ -90,9 +90,9 @@ body{
 
 .image{
    grid-row:span 2;
-   height: fit-content;
-   width: fit-content;
-   object-fit: contain;
+   height: 30rem;
+   width: 90%;
+   object-fit: scale-down;
 }
 
 .image img{
