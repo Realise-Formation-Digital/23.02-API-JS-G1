@@ -160,6 +160,21 @@ class Beers {
     }
 
     /**
+     * fonction pour supprimer une bière
+     */
+
+    async deleteBeer(idBeer){
+        try{
+            let res = await axios.delete(urlBeers + '/' + idBeer);
+            this.htmlAlert(res.data['message']);
+        }
+        catch(e){
+            this.htmlAlert("This id does not exist in our database, please create the item first");
+            console.error(error);
+        }
+    }
+
+    /**
      * permettant de contruire le html sur une liste d'objet
      * @param {liste d'objet} value 
      */

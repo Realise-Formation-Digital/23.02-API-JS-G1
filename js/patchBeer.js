@@ -13,8 +13,9 @@ for (let beer of beerList) {
     selectBeer.appendChild(opt);
 }
 
+//récupérer les éléments
 const updateBut = document.getElementById("updateBtn");
-
+const deleteBut = document.getElementById("deleteBtn");
 
 let name = document.getElementById('name');
 let tagline = document.getElementById('tagline');
@@ -51,6 +52,19 @@ async function updateBeers(id){
     }
 }
 
+/**
+ * fonction appeler dans le bouton
+ * @param {int} id 
+ */
+async function delBeer(id){
+    try{
+        await beers.deleteBeer(id);
+    }
+    catch(e){
+        console.error(e);
+    }
+}
+
 function slctBeer(){
     // UPDATE THE PLACEHOLDERS WITH THE PREVIOUS INFO OF THE SELECTED BEER
     if(selectBeer.value !== "Select beer to edit"){
@@ -73,3 +87,4 @@ function slctBeer(){
 
 updateBut.addEventListener("click",()=> updateBeers(selectedBeer));
 selectBeer.addEventListener("change",()=> slctBeer());
+deleteBut.addEventListener("click",()=> delBeer(selectedBeer));

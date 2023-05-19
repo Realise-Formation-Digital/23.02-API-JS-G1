@@ -64,7 +64,6 @@ class HomeModel {
         try {
             evt.stopPropagation()
             if (!evt.target.value || evt.target.value === '') return
-            let nameSearch = evt.target.value;
             await this._beerInstance.getBeersByName(evt.target.value);
         }
         catch (e) {
@@ -74,7 +73,7 @@ class HomeModel {
 
     /**
      * 
-     * @param {*} evt 
+     * @param {Event} evt 
      */
     async changeType(evt) {
         try {
