@@ -23,7 +23,7 @@ class Beers {
         } catch (error) {
             console.error(error);
         }
-  }
+    }
 
   /**
    * methode qui fait une requete à la db
@@ -106,7 +106,6 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
-            console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
             this.htmlAlert("Beer successfully created")
             return result;
@@ -206,7 +205,7 @@ class Beers {
         }
     }
 
-   //async function for Modal (by id)
+    //async function for Modal (by id)
    async htmlModal(id) {
         console.log(id);
         //async - call beer by id
@@ -221,8 +220,8 @@ class Beers {
         closeBtn.classList.add('btnClose');
         closeBtn.innerText = 'X';
         //inject js in html 
-        this.modal.innerHTML = 
-        `<div class="image">
+        this.modal.innerHTML =
+            `<div class="image">
             <img src="${beer.image_url}" alt="">
         </div>
         <div class="infoBeer">
@@ -236,11 +235,11 @@ class Beers {
             <ul>
             ${beer.ingredients
                 .map(
-                  (ingredient) =>
-                  `<li>type: ${ingredient.type}</li>
+                    (ingredient) =>
+                        `<li>type: ${ingredient.type}</li>
                   <li>name: ${ingredient.name}</li>`
-                  )
-                  .join("")}
+                )
+                .join("")}
             </ul>
         </div>
         <div class="food">
