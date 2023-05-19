@@ -57,7 +57,7 @@ async function clickName(evt){
         }
     }
     catch(e){
-        console.error('remiao', e);
+        throw new Error("erreur");
     }
 }
 
