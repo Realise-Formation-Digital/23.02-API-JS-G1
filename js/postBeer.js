@@ -38,6 +38,7 @@ let idBeer = document.getElementById('idBeer');
  * attribution des valeurs aux paramètres de la méthode createBeers
  */
 async function createBeer(){
+
     let nom = name.value;
     let tag = tagline.value;
     let date = firstBrewed.value;
@@ -48,9 +49,14 @@ async function createBeer(){
     let contribute = contributedBy.value;
     let decrit = description.value;
     let brewers = brewersTips.value;
-
+    let id = [];
     if(!!nom && !!tag && !!date && !!url && !!food && !!foodDeux && !!foodTrois && !!contribute && !!brewers && !!decrit ){
-        let id = await beers.createBeers(nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
+        try{
+            id = await beers.createBeers(nom,tag,date,url,food,foodDeux,foodTrois,contribute,brewers,decrit);
+        }
+        catch(e){
+            throw new Error("Please, fill all the information entries");
+        }
         idBeer.value = id;
         beers.htmlAlert(`Bière ${id} a bien été créé.`);
     }else {

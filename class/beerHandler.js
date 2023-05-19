@@ -23,18 +23,19 @@ class Beers {
         } catch (error) {
             console.error(error);
         }
-  }
+    }
 
-  /**
-   * methode qui fait une requete à la db
-   * @param {input de la navbar} value 
-   */
-  async getBeersByName(value) {
-    try {
-      let res = await axios.get(urlBeers + "?name=" + value);
-      this.htmlConstruct(res.data);
-    } catch (e) {
-      throw new Error;
+    /**
+     * methode qui fait une requete à la db
+     * @param {input de la navbar} value 
+     */
+    async getBeersByName(value) {
+        try {
+            let res = await axios.get(urlBeers + "?name=" + value);
+            this.htmlConstruct(res.data);
+        } catch (e) {
+            throw new Error("ciao");
+        }
     }
 
     /**
@@ -105,7 +106,6 @@ class Beers {
                 "brewers_tips": brewers_tips,
                 "description": description
             });
-            console.log(response.data);
             let result = response.data.substr(response.data.length - 4, 4);
             this.htmlAlert("Beer successfully created")
             return result;
@@ -197,7 +197,7 @@ class Beers {
         }
     }
 
-   async htmlModal(id) {
+    async htmlModal(id) {
         console.log(id);
         let beer = await this.callOneBeer(id);
         console.log(beer);
@@ -207,8 +207,8 @@ class Beers {
         closeBtn.classList.add('btn');
         closeBtn.classList.add('btnClose');
         closeBtn.innerText = 'X';
-        this.modal.innerHTML = 
-        `<div class="image">
+        this.modal.innerHTML =
+            `<div class="image">
             <img src="${beer.image_url}" alt="">
         </div>
         <div class="infoBeer">
@@ -222,11 +222,11 @@ class Beers {
             <ul>
             ${beer.ingredients
                 .map(
-                  (ingredient) =>
-                  `<li>type: ${ingredient.type}</li>
+                    (ingredient) =>
+                        `<li>type: ${ingredient.type}</li>
                   <li>name: ${ingredient.name}</li>`
-                  )
-                  .join("")}
+                )
+                .join("")}
             </ul>
         </div>
         <div class="food">
