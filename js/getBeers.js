@@ -49,9 +49,12 @@ async function clickName(evt){
     try{
         evt.stopPropagation()
 
-        if(!evt.target.value || evt.target.value === '') return
-        console.log(evt.target);
-        await beers.getBeersByName(evt.target.value);
+        if(!evt.target.value || evt.target.value === '') {
+            return choosPage(0);
+        }
+        else{
+            await beers.getBeersByName(evt.target.value);
+        }
     }
     catch(e){
         console.error('remiao', e);
