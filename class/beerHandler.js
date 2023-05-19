@@ -192,10 +192,11 @@ class Beers {
             link.addEventListener("click", (evt) => {
                 this.htmlModal(i.id);
             })
-            // loops through data and 
+            // loops through data 
             img.src = i.image_url;
             heading.innerText = i.tagline;
             link.innerText = i.name;
+            //append elements to row and columns 
             rowEl.appendChild(colEl);
             colEl.appendChild(card);
             card.appendChild(img);
@@ -205,16 +206,21 @@ class Beers {
         }
     }
 
+   //async function for Modal (by id)
    async htmlModal(id) {
         console.log(id);
+        //async - call beer by id
         let beer = await this.callOneBeer(id);
         console.log(beer);
+        //display grid of modal
         this.modal.style.display = "grid";
         this.removeChild(this.modal);
+        //create button close
         const closeBtn = document.createElement('button');
         closeBtn.classList.add('btn');
         closeBtn.classList.add('btnClose');
         closeBtn.innerText = 'X';
+        //inject js in html 
         this.modal.innerHTML = 
         `<div class="image">
             <img src="${beer.image_url}" alt="">
