@@ -50,7 +50,7 @@ async function clickName(evt){
         evt.stopPropagation()
 
         if(!evt.target.value || evt.target.value === '') return
-        let nameSearch = evt.target.value;
+        console.log(evt.target);
         await beers.getBeersByName(evt.target.value);
     }
     catch(e){
